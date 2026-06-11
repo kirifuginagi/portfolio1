@@ -1,0 +1,631 @@
+/* ==========================================================================
+   [구글 폰트 불러오기 및 초기화]
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Do+Hyeon&family=East+Sea+Dokdo&family=Fascinate&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+:root {
+    /* 1. 색상 테마 (Color Palette) */
+    --color-primary: #2E3033;       /* 주색상 (딥 차콜) */
+    --color-secondary: #E2E8F0;     /* 보조색 (슬레이트 그레이) */
+    --color-bg-main: #F1C40F;       /* 전체 웹페이지 배경색 (비비드 옐로우) */
+    --color-text-main: #1E2530;     /* 본문 및 메인 텍스트 컬러 (다크 그레이) */
+    --color-text-light: #FFFFFF;    /* 주색상 배경 위에 올라갈 밝은 텍스트 */
+
+    /* 2. 타이포그래피 (Typography) */
+    --font-title: 'Do Hyeon', sans-serif;       /* 제목용 폰트 */
+    --font-body: 'Noto Sans KR', sans-serif;    /* 본문용 폰트 */
+    
+    /* 3. 여백 및 간격 (Spacing) */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 40px;
+    --spacing-xxl: 80px;
+
+    /* 4. 둥근 모서리 (Border Radius) */
+    --radius-sm: 4px;    
+    --radius-md: 8px;    
+    --radius-lg: 16px;   
+    --radius-round: 50%; 
+
+    /* 5. 애니메이션 전환 (Transition) */
+    --transition-smooth: all 0.3s ease;
+    --max-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --------------------------------------------------------------------------
+   [PC 전용 스크롤 스냅 설정]
+   -------------------------------------------------------------------------- */
+html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory; /* PC에서는 턱턱 걸리는 자석 스크롤 적용 */
+    height: 100vh;
+}
+
+body {
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    height: 100vh;
+}
+
+ul, li {
+    list-style: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+/* --------------------------------------------------------------------------
+   각 섹션 PC 기준 풀페이지 레이아웃
+   -------------------------------------------------------------------------- */
+.hero-section,
+.about-section,
+.identity-section,
+.works-section,
+.skills-section,
+.contact-section {
+    height: 100vh;            
+    scroll-snap-align: start; 
+    scroll-margin-top: 70px;  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+/* 공통 섹션 제목 (Do Hyeon 폰트 적용) */
+.section-title {
+    font-family: var(--font-title);
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   [Header & Navigation] - 고정 헤더
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo a {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--color-bg-main);
+}
+
+.nav-menu {
+    display: flex;
+    gap: var(--spacing-xl);
+}
+
+.nav-menu a {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    letter-spacing: 0.5px;
+}
+
+.nav-menu a:hover {
+    color: var(--color-bg-main);
+}
+
+/* ==========================================================================
+   [Hero Section]
+   ========================================================================== */
+.hero-section {
+    padding-top: var(--spacing-xxl);
+    background-color: var(--color-bg-main);
+    align-items: center; 
+}
+
+.hero-content {
+    max-width: 800px;
+    text-align: center;
+}
+
+.hero-text-block {
+    margin-bottom: var(--spacing-lg);
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-sm);
+    word-break: keep-all;
+}
+
+.hero-description {
+    font-size: 1.3rem;
+    color: var(--color-text-main);
+    font-weight: 500;
+    word-break: keep-all;
+}
+
+.hero-action {
+    margin-top: var(--spacing-xl);
+}
+
+.btn {
+    display: inline-block;
+    font-family: var(--font-title);
+    padding: var(--spacing-md) var(--spacing-xl);
+    font-size: 1.3rem;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    border: 2px solid var(--color-primary);
+    transition: var(--transition-smooth);
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+/* ==========================================================================
+   [About Section]
+   ========================================================================== */
+.about-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-secondary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: var(--color-text-light);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-md);
+    box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.about-text {
+    font-size: 1.15rem;
+    color: var(--color-text-main);
+    line-height: 1.8;
+    word-break: keep-all;
+}
+
+/* ==========================================================================
+   [Identity Section]
+   ========================================================================== */
+.identity-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-secondary);
+}
+
+.identity-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.identity-card {
+    background-color: var(--color-text-light);
+    padding: var(--spacing-xl) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-primary);
+    box-shadow: 4px 4px 0px var(--color-primary);
+    transition: var(--transition-smooth);
+}
+
+.identity-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--color-primary);
+}
+
+.identity-card h3 {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.identity-card p {
+    font-size: 1rem;
+    color: var(--color-text-main);
+}
+
+/* ==========================================================================
+   [Works Section]
+   ========================================================================== */
+.works-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-bg-main);
+}
+
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+}
+
+.work-item {
+    background-color: var(--color-text-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--color-primary);
+    box-shadow: 6px 6px 0px var(--color-primary);
+    transition: var(--transition-smooth);
+}
+
+.work-item:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 9px 9px 0px var(--color-primary);
+}
+
+.work-thumbnail {
+    height: 200px;
+    background-color: var(--color-primary);
+    color: var(--color-bg-main);
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-lg);
+    text-align: center;
+}
+
+.work-title {
+    font-family: var(--font-title);
+    font-size: 1.6rem;
+    padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+.work-desc {
+    padding: 0 var(--spacing-lg) var(--spacing-lg);
+    font-size: 1rem;
+    color: var(--color-text-main);
+    word-break: keep-all;
+}
+
+/* ==========================================================================
+   [Skills Section]
+   ========================================================================== */
+.skills-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-secondary);
+}
+
+.skills-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.skills-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.skill-tag {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.5px;
+    box-shadow: 3px 3px 0px var(--color-bg-main);
+}
+
+/* ==========================================================================
+   [Contact Section]
+   ========================================================================== */
+.contact-section {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--color-bg-main);
+}
+
+.contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-message {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xl);
+    word-break: keep-all;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.contact-info li {
+    font-size: 1.1rem;
+    background-color: var(--color-text-light);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    width: 100%;
+    max-width: 450px;
+    border: 2px solid var(--color-primary);
+    box-shadow: 4px 4px 0px var(--color-primary);
+}
+
+.contact-info strong {
+    font-family: var(--font-title);
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-right: var(--spacing-sm);
+}
+
+/* ==========================================================================
+   [Footer]
+   ========================================================================== */
+.main-footer {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+    padding: var(--spacing-lg) 0;
+    text-align: center;
+}
+
+.footer-container {
+    font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   [수정] 반응형 미디어 쿼리 - 태블릿 및 모바일 풀페이지 스냅 강제 활성화
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* 1. 모바일 환경에서도 스크롤 스냅(자석 효과) 유지하도록 설정 */
+    html, body {
+        height: 100vh !important;
+        overflow-y: scroll !important;
+        scroll-snap-type: y mandatory !important;
+    }
+    
+    /* 2. 각 섹션이 모바일 화면(100vh)에 딱 맞게 정렬되도록 복구 */
+    .hero-section,
+    .about-section,
+    .identity-section,
+    .works-section,
+    .skills-section,
+    .contact-section {
+        height: 100vh !important;
+        min-height: 100vh !important;
+        scroll-snap-align: start !important;
+        scroll-margin-top: 90px !important; /* 모바일 헤더 높이에 맞춤 */
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        padding-top: 100px !important; 
+        padding-bottom: var(--spacing-lg) !important;
+    }
+
+    /* 3. 모바일 화면 크기에 맞춰 내부 요소들 크기 압축 (컨텐츠 넘침 방지) */
+    .hero-content {
+        padding: 0 var(--spacing-md);
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.3;
+    }
+
+    .hero-description {
+        font-size: 1.05rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    /* 4. Grid 요소들이 화면을 뚫고 나가지 않도록 모바일 최적화 */
+    .identity-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm); /* 간격을 좁혀 한 화면에 들어오게 함 */
+    }
+
+    .identity-card {
+        padding: var(--spacing-md); /* 내부 여백 축소 */
+    }
+
+    .works-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .work-item {
+        box-shadow: 4px 4px 0px var(--color-primary); /* 그림자 축소 */
+    }
+
+    .work-thumbnail {
+        height: 140px; /* 썸네일 높이를 줄여 카드 전체가 모바일 화면 안에 들어오게 조절 */
+    }
+
+    .work-title {
+        font-size: 1.3rem;
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-xs);
+    }
+
+    .work-desc {
+        font-size: 0.9rem;
+        padding: 0 var(--spacing-md) var(--spacing-md);
+    }
+    
+    .about-content {
+        padding: var(--spacing-md);
+    }
+
+    .about-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* 5. 모바일 네비게이션 헤더 정렬 */
+    .nav-container {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-md);
+    }
+
+    .nav-menu a {
+        font-size: 0.95rem;
+    }
+}
+
+/* 스마트폰 전용 초소형 화면 가독성 패치 */
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .btn {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 1.1rem;
+    }
+    .about-profile-img img {
+        width: 140px !important; /* 모바일에서 프로필 사진 크기 축소하여 텍스트 공간 확보 */
+        height: 140px !important;
+    }
+}
+
+/* ==========================================================================
+   [포트폴리오 맞춤형 애니메이션 Keyframes & Classes]
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Motion 1. 정석적인 부드러운 상승 (Fade In Up)
+   - 가장 안정적이며 가독성을 해치지 않는 기본 모션입니다.
+   -------------------------------------------------------------------------- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.motion-fade-up {
+    opacity: 0; /* 애니메이션 시작 전 숨김 */
+    animation: fadeInUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Motion 2. 좌측에서 묵직하게 들어오는 시선 유도 (Fade In Left)
+   - 타이틀이나 핵심 키워드 강조 시 시선의 흐름(좌->우)을 자연스럽게 만듭니다.
+   -------------------------------------------------------------------------- */
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.motion-fade-left {
+    opacity: 0;
+    animation: fadeInLeft 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Motion 3. 레트로·미니멀한 팝업 모션 (Pop In)
+   - 카드가 툭 튀어나오거나, 버튼(CTA)의 클릭을 유도할 때 최적화된 모션입니다.
+   -------------------------------------------------------------------------- */
+@keyframes popIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(10px);
+    }
+    70% {
+        transform: scale(1.02) translateY(-2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+.motion-pop-in {
+    opacity: 0;
+    animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* --------------------------------------------------------------------------
+   Motion 4. 긴장감 있는 타이포그래피 추적 (Blur & Track In)
+   - 텍스트 자간이 조여지며 흐릿함이 번지는 모션으로, 헤드카피에 깊이감을 줍니다.
+   -------------------------------------------------------------------------- */
+@keyframes trackInBlur {
+    from {
+        opacity: 0;
+        letter-spacing: 4px;
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        letter-spacing: 1px;
+        filter: blur(0);
+    }
+}
+.motion-track-blur {
+    opacity: 0;
+    animation: trackInBlur 0.9s ease-out forwards;
+}
+
+/* --------------------------------------------------------------------------
+   [꿀팁] 순차적 등장을 위한 딜레이 유틸리티 클래스
+   -------------------------------------------------------------------------- */
+.delay-1 { animation-delay: 0.15s !important; }
+.delay-2 { animation-delay: 0.35s !important; }
+.delay-3 { animation-delay: 0.55s !important; }
+.delay-4 { animation-delay: 0.75s !important; }
